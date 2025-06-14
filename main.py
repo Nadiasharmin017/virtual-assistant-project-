@@ -3,6 +3,7 @@ import pyttsx3
 import datetime
 import pywhatkit
 import wikipedia
+import pyjokes
 
 listener = sr.Recognizer( )
 alexa = pyttsx3.init()
@@ -42,5 +43,12 @@ def run_alexa():
             info = wikipedia.summary(look_for, 1)
             print(info) 
             talk(info)
+            
+    elif "joke" in command:
+        talk(pyjokes.get_joke())
+    else:
+        talk("sorry, I cannot hear you. but i search in for you")
+        pywhatkit.search(command)
 
-run_alexa() 
+while True:
+    run_alexa() 
