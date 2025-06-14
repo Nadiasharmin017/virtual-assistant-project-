@@ -1,6 +1,7 @@
 import speech_recognition as sr
 import pyttsx3
 import datetime
+import pywhatkit
 
 listener = sr.Recognizer( )
 alexa = pyttsx3.init()
@@ -15,8 +16,8 @@ def take_command( ):
             print("listening...") 
             voice = listener.listen(source)
             command = listener.recognize_google(voice)
-            # if "alexa" in command:
-            print(command)     
+            if "alexa" in command:
+                command = command.replace("alexa", "")  
     except:
         pass
     return command
@@ -26,7 +27,14 @@ def run_alexa():
     if 'time' in command:
         time = datetime.datetime.now().strftime("%I:%M %p") 
         print(time)  
-        talk("current time is" + time)   
+        talk("current time is" + time) 
+        # play song  
+    elif "play" in command:
+        song = command.replace("play","")
+        talk("playing" + song)
+        pywhatkit.playonyt(song) 
+          
+        
         
 
 run_alexa() 
