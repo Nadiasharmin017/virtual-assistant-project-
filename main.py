@@ -50,5 +50,5 @@ def run_alexa():
         talk("sorry, I cannot hear you. but i search in for you")
         pywhatkit.search(command)
 
-while True:
-    run_alexa() 
+# while True:
+run_alexa() 
